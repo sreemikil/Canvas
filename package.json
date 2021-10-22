@@ -1,5 +1,6 @@
 {
-  "name": "canvas-draw",
+  "homepage": "https://myusername.github.io/my-app",
+  "name": "canvas",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
