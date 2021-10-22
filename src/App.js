@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const colors = [
+  "Black",
   "White",
   "red",
   "green",
   "yellow",
-  "black",
   "blue"
 ]
 
