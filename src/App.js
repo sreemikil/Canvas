@@ -9,11 +9,20 @@ const colors = [
   "blue"
 ]
 
+const size = [
+  "1",
+  "2",
+  "4",
+  "8",
+  "10"
+]
+
 function App() {
   const canvasRef = useRef(null);
   const ctx = useRef(null);
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [selectedsize, setSelectedsize] = useState(size[0]);
   const [mouseDown, setMouseDown] = useState(false);
   const [lastPosition, setPosition] = useState({
     x: 0,
@@ -30,7 +39,7 @@ function App() {
     if (mouseDown) {
       ctx.current.beginPath();
       ctx.current.strokeStyle = selectedColor;
-      ctx.current.lineWidth = 4;
+      ctx.current.lineWidth = selectedsize;
       ctx.current.lineJoin = 'round';
       ctx.current.moveTo(lastPosition.x, lastPosition.y);
       ctx.current.lineTo(x, y);
@@ -42,7 +51,7 @@ function App() {
         y
       })
     }
-  }, [lastPosition, mouseDown, selectedColor, setPosition])
+  }, [lastPosition, mouseDown, selectedColor,selectedsize, setPosition])
 
   const download = async () => {
     const image = canvasRef.current.toDataURL('image/png');
@@ -78,7 +87,7 @@ function App() {
     <div className="App">
       <canvas
         style={{
-          border: "1px solid #000",
+          border: "1px solid #000"
         }}
         width={1200}
         height={600}
@@ -107,6 +116,27 @@ function App() {
           )
         }
       </select>
+
+      <select
+          style={{
+            marginLeft: "24px",
+            padding: "8px 24px",
+            color: "#0062ff",
+            border: "2px solid #0062ff",
+            borderRadius: "4px"
+            }}
+
+        value={selectedsize}
+        onChange={(e) => setSelectedsize(e.target.value)}
+      >
+        {
+          size.map(
+            size => <option 
+            key={size} value={size}>{size}</option>
+          )
+        }
+      </select>
+
       <button style={{
           marginLeft: "24px",
           padding: "8px 24px",
